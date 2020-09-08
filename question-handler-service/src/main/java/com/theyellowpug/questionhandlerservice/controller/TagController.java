@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/tag")
 public class TagController {
+
     @Autowired
     private TagRepository tagRepository;
 
