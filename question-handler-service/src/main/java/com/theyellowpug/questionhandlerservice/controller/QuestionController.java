@@ -19,6 +19,11 @@ public class QuestionController {
         questionRepository.save(question);
         return "Success";
     }
+    @GetMapping("/all")
+    public List<Question> getAllQuestion(){
+        return questionRepository.findAll();
+    }
+
 
 
 }
