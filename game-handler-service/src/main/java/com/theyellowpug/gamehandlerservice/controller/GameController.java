@@ -25,4 +25,10 @@ public class GameController {
         return game.getTitle()+" game is created";
     }
 
+    @DeleteMapping("/{id}")
+    public String deleteGameById(@PathVariable("id") Long id){
+        gameRepository.deleteById(id);
+        return "Game at id: "+id+" is successfully deleted";
+    }
+
 }
