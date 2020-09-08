@@ -23,6 +23,11 @@ public class QuestionController {
     public List<Question> getAllQuestion(){
         return questionRepository.findAll();
     }
+    @DeleteMapping("{id}")
+    public String deleteQuestionById(@PathVariable("id") long id){
+        questionRepository.deleteById(id);
+        return "Successfull deleted";
+    }
 
 
 
