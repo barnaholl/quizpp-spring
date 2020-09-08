@@ -24,4 +24,10 @@ public class TagController {
         return tagRepository.findAll();
     }
 
+    @DeleteMapping("/{id}")
+    public String deleteTagById(@PathVariable("id") Long id){
+        tagRepository.deleteById(id);
+        return "Tag at: "+id+"id was successfully deleted";
+    }
+
 }
