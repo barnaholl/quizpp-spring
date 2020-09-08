@@ -19,5 +19,9 @@ public class TagController {
         return "Tag: "+tag.getValue()+" is successfully saved";
     }
 
+    @GetMapping("")
+    public List<Tag> getTags(){
+        return tagRepository.findAll();
+    }
 
 }
