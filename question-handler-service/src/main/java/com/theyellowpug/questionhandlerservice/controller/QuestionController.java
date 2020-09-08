@@ -23,10 +23,23 @@ public class QuestionController {
     public List<Question> getAllQuestion(){
         return questionRepository.findAll();
     }
-    @DeleteMapping("{id}")
-    public String deleteQuestionById(@PathVariable("id") long id){
+
+    @GetMapping("/difficulty")
+    public List<Question> getRandomByTag(){
+        return questionRepository.findByDifficultyEquals((short)2);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteQuestionById(@PathVariable("id") Long id){
         questionRepository.deleteById(id);
-        return "Successfull deleted";
+        return "Successfully deleted";
+    }
+
+    @PutMapping("/{id}")
+    public String updateQuestionById(@PathVariable("id") Long id,@RequestBody Question question){
+        questionRepository.deleteById(id);
+        questionRepository.save(question);
+        return "Successfully updated";
     }
 
 
