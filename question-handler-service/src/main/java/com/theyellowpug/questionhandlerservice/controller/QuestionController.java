@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Random;
 
 @CrossOrigin
 @RestController
@@ -25,9 +26,15 @@ public class QuestionController {
         return questionRepository.findAll();
     }
 
-    @GetMapping("/difficulty")
-    public List<Question> getRandomByTag(){
-        return questionRepository.findByDifficultyEquals((short)2);
+    @GetMapping("/{tag}/{difficulty}")
+    public Question getRandomByTagAndDifficulty(@PathVariable("tag")String tag, @PathVariable("difficulty") short difficulty) {
+        List<Question> questions=questionRepository.findAllByTagsAndDifficultyEquals(tag,difficulty);
+        if(questions.size()>0){
+            Random random=new Random();
+            return questions.get(random.nextInt(questions.size()));
+        }
+
+        return null;
     }
 
     @DeleteMapping("/{id}")

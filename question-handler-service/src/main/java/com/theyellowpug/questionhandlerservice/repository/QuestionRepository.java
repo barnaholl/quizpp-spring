@@ -7,6 +7,5 @@ import java.util.List;
 
 public interface QuestionRepository extends JpaRepository<Question,Long> {
 
-    Question getById(Long id);
-    List<Question> findByDifficultyEquals(short difficulty);
+    List<Question> findAllByTagsAndDifficultyEquals(String tag, short difficulty);
 }
