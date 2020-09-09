@@ -6,10 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -19,18 +17,21 @@ import javax.persistence.Id;
 public class Game {
     @Id
     @GeneratedValue
-    public Long id;
+    private Long id;
 
     @Column(nullable = false)
-    public String title;
+    private String title;
 
-    public String description;
-
-    @Column(nullable = false)
-    public String tag;
+    private String description;
 
     @Column(nullable = false)
-    public short difficulty;
+    private String tag;
+
+    @Column(nullable = false)
+    private short difficulty;
+
+    @ElementCollection
+    private List<String> tags;
 
 
 }
