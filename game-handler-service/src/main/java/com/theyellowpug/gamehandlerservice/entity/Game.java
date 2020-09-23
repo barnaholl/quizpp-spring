@@ -1,6 +1,5 @@
 package com.theyellowpug.gamehandlerservice.entity;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,5 +32,7 @@ public class Game {
     @ElementCollection
     private List<String> tags;
 
+    @Column(nullable = false)
+    private String type;
 
 }

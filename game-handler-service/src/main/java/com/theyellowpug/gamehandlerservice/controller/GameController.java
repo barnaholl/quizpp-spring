@@ -20,6 +20,11 @@ public class GameController {
         return gameRepository.findAll();
     }
 
+    @GetMapping("/{id}")
+    public Game getGameById(@PathVariable("id") Long id){
+        return gameRepository.getById(id);
+    }
+
     @PostMapping("")
     public String createGame(@RequestBody Game game){
         gameRepository.save(game);

@@ -40,5 +40,7 @@ public class Question {
     @ElementCollection
     private List<String> tags;
 
+    //TODO:private User owner
+
 
 }
