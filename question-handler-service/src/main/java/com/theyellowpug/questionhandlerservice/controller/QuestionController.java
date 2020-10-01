@@ -10,18 +10,18 @@ import java.util.Random;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/question")
+@RequestMapping()
 public class QuestionController {
 
     @Autowired
     private QuestionRepository questionRepository;
 
-    @PostMapping("")
+    @PostMapping("/")
     public String addQuestion(@RequestBody Question question){
         questionRepository.save(question);
         return "Success";
     }
-    @GetMapping("/all")
+    @GetMapping("/")
     public List<Question> getAllQuestion(){
         return questionRepository.findAll();
     }
@@ -33,7 +33,6 @@ public class QuestionController {
             Random random=new Random();
             return questions.get(random.nextInt(questions.size()));
         }
-
         return null;
     }
 
