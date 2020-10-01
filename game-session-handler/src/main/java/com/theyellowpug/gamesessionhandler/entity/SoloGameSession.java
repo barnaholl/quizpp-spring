@@ -1,9 +1,6 @@
 package com.theyellowpug.gamesessionhandler.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -28,6 +25,7 @@ public class SoloGameSession {
     String tag;
 
     @ElementCollection
+    @Singular
     List<Long> answeredQuestions;
 
     Long currentQuestion;

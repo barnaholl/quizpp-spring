@@ -5,6 +5,7 @@ import com.theyellowpug.gamesessionhandler.repository.SoloGameSessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin
@@ -25,6 +26,16 @@ public class SoloGameSessionController {
     @GetMapping("/{id}")
     public Optional<SoloGameSession> getSoloGameSessionById(@PathVariable("id") Long id){
         return soloGameSessionRepository.findById(id);
+    }
+
+    @PutMapping("/{id}/{questionId}")
+    public String refreshCurrentQuestion(@PathVariable("id") Long id,@PathVariable("questionId") Long questionId){
+        SoloGameSession gameSession=soloGameSessionRepository.getById(id);
+        List<Long> answeredQuestions=gameSession.getAnsweredQuestions();
+        answeredQuestions.add(gameSession.getCurrentQuestion());
+        gameSession.setCurrentQuestion(questionId);
+        soloGameSessionRepository.save(gameSession);
+        return gameSession.toString()+"is saved";
     }
 
 }
