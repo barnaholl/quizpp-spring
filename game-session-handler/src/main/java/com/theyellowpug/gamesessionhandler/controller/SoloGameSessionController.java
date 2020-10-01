@@ -34,6 +34,7 @@ public class SoloGameSessionController {
         List<Long> answeredQuestions=gameSession.getAnsweredQuestions();
         answeredQuestions.add(gameSession.getCurrentQuestion());
         gameSession.setCurrentQuestion(questionId);
+        gameSession.setCurrentRound((short) (gameSession.getCurrentRound()+1));
         soloGameSessionRepository.save(gameSession);
         return gameSession.toString()+"is saved";
     }
