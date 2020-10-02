@@ -1,6 +1,7 @@
 package com.theyellowpug.gamesessionhandler.controller;
 
 import com.theyellowpug.gamesessionhandler.entity.SoloGameSession;
+import com.theyellowpug.gamesessionhandler.model.QuestionResult;
 import com.theyellowpug.gamesessionhandler.repository.SoloGameSessionRepository;
 import com.theyellowpug.gamesessionhandler.service.QuestionServiceCaller;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,15 +39,26 @@ public class SoloGameSessionController {
         return soloGameSessionRepository.findById(id);
     }
 
-    @PutMapping("/{id}/{questionId}")
-    public String refreshCurrentQuestion(@PathVariable("id") Long id,@PathVariable("questionId") Long questionId){
+    @PutMapping("/{id}/{isCorrect}")
+    public SoloGameSession refreshCurrentSession(@PathVariable("id") Long id,@PathVariable("isCorrect") Boolean isCorrect){
         SoloGameSession gameSession=soloGameSessionRepository.getById(id);
+
+        gameSession.setIsActive(isCorrect);
+
         List<Long> answeredQuestions=gameSession.getAnsweredQuestions();
         answeredQuestions.add(gameSession.getCurrentQuestion());
-        gameSession.setCurrentQuestion(questionId);
+
+        Long newQuestion=questionServiceCaller.getQuestionId(gameSession.getTag(), gameSession.getDifficulty());
+        while (gameSession.getAnsweredQuestions().contains(newQuestion)){
+            newQuestion=questionServiceCaller.getQuestionId(gameSession.getTag(), gameSession.getDifficulty());
+        }
+        gameSession.setCurrentQuestion(newQuestion);
+
         gameSession.setCurrentRound((short) (gameSession.getCurrentRound()+1));
+
         soloGameSessionRepository.save(gameSession);
-        return gameSession.toString()+"is saved";
+
+        return gameSession;
     }
 
 }

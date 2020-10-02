@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @CrossOrigin
@@ -24,6 +25,12 @@ public class QuestionController {
     @GetMapping("/")
     public List<Question> getAllQuestion(){
         return questionRepository.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Question> getAllQuestionById(@PathVariable("id") Long id)
+    {
+        return questionRepository.findById(id);
     }
 
     @GetMapping("/{tag}/{difficulty}")

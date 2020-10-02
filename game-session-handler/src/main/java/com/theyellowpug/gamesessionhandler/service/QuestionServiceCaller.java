@@ -1,6 +1,7 @@
 package com.theyellowpug.gamesessionhandler.service;
 
 import com.theyellowpug.gamesessionhandler.model.QuestionResult;
+import com.theyellowpug.gamesessionhandler.repository.SoloGameSessionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

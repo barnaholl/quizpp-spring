@@ -25,7 +25,6 @@ public class SoloGameSession {
     String tag;
 
     @ElementCollection
-    @Singular
     List<Long> answeredQuestions;
 
     Long currentQuestion;

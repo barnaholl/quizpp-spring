@@ -1,6 +1,6 @@
 #FileLock
-#Thu Oct 01 12:09:28 CEST 2020
-server=127.0.1.1\:34457
+#Fri Oct 02 16:56:38 CEST 2020
+server=127.0.1.1\:39349
 hostName=barna-ThinkPad-T450
 method=file
-id=174e3a35d2bb9a395c99670ac67f88fedb00765eaf7
+id=174e9d099d15681f6877d002bf1703590e532e8a3a5
