@@ -27,7 +27,7 @@ public class QuestionController {
     }
 
     @GetMapping("/{tag}/{difficulty}")
-    public Question getRandomByTagAndDifficulty(@PathVariable("tag")String tag, @PathVariable("difficulty") short difficulty) {
+    public Question getRandomByQuestionTagAndDifficulty(@PathVariable("tag")String tag, @PathVariable("difficulty") short difficulty) {
         List<Question> questions=questionRepository.findAllByTagsAndDifficultyEquals(tag,difficulty);
         if(questions.size()>0){
             Random random=new Random();
