@@ -1,7 +1,6 @@
 package com.theyellowpug.gamesessionhandler.controller;
 
 import com.theyellowpug.gamesessionhandler.entity.SoloGameSession;
-import com.theyellowpug.gamesessionhandler.model.QuestionResult;
 import com.theyellowpug.gamesessionhandler.repository.SoloGameSessionRepository;
 import com.theyellowpug.gamesessionhandler.service.QuestionServiceCaller;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,17 +43,18 @@ public class SoloGameSessionController {
         SoloGameSession gameSession=soloGameSessionRepository.getById(id);
 
         gameSession.setIsActive(isCorrect);
+        if(isCorrect){
+            List<Long> answeredQuestions=gameSession.getAnsweredQuestions();
+            answeredQuestions.add(gameSession.getCurrentQuestion());
 
-        List<Long> answeredQuestions=gameSession.getAnsweredQuestions();
-        answeredQuestions.add(gameSession.getCurrentQuestion());
+            Long newQuestion=questionServiceCaller.getQuestionId(gameSession.getTag(), gameSession.getDifficulty());
+            while (gameSession.getAnsweredQuestions().contains(newQuestion)){
+                newQuestion=questionServiceCaller.getQuestionId(gameSession.getTag(), gameSession.getDifficulty());
+            }
+            gameSession.setCurrentQuestion(newQuestion);
 
-        Long newQuestion=questionServiceCaller.getQuestionId(gameSession.getTag(), gameSession.getDifficulty());
-        while (gameSession.getAnsweredQuestions().contains(newQuestion)){
-            newQuestion=questionServiceCaller.getQuestionId(gameSession.getTag(), gameSession.getDifficulty());
+            gameSession.setCurrentRound((short) (gameSession.getCurrentRound()+1));
         }
-        gameSession.setCurrentQuestion(newQuestion);
-
-        gameSession.setCurrentRound((short) (gameSession.getCurrentRound()+1));
 
         soloGameSessionRepository.save(gameSession);
 
