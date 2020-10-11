@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -16,7 +13,7 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class IrlPerson {
+public class PersonalData {
     @Id
     @GeneratedValue
     Long id;
@@ -32,6 +29,9 @@ public class IrlPerson {
 
     @Column(nullable = false)
     String sex;
+
+    @OneToOne(mappedBy = "irlPerson")
+    QuizUser quizUser;
 
 
 }

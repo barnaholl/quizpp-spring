@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Builder
@@ -25,5 +22,8 @@ public class QuizUser {
 
     @Column(nullable = false)
     String password;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    PersonalData personalData;
 
 }
