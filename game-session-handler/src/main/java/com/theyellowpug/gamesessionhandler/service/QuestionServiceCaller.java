@@ -15,12 +15,11 @@ public class QuestionServiceCaller {
     private final String questionHandlerUrl="http://question-handler-service";
 
     public Long getQuestionId(String tag,Short difficulty){
-        Long result=restTemplate.getForObject(questionHandlerUrl+"/"+tag+"/"+difficulty,Long.class);
-        return result;
+        return restTemplate.getForObject(questionHandlerUrl+"/"+tag+"/"+difficulty,Long.class);
     }
 
-    public Boolean isAnswerCorrect(String answer){
-        Long result=restTemplate.getForObject(questionHandlerUrl+"/"+tag+"/"+difficulty,Long.class);
+    public Boolean isAnswerCorrect(Long id, String answer){
+        return restTemplate.getForObject(questionHandlerUrl+"/isCorrect/"+id+"/"+answer,Boolean.class);
     }
 
 
