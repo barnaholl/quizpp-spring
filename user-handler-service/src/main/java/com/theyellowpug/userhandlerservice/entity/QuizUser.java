@@ -23,7 +23,12 @@ public class QuizUser {
     @Column(nullable = false)
     String password;
 
+    @Column(nullable = false)
+    UserRole userRole;
+
     @OneToOne(cascade = CascadeType.ALL)
     PersonalData personalData;
+
+
 
 }
