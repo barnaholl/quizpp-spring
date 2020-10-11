@@ -19,19 +19,19 @@ import java.util.Date;
 public class IrlPerson {
     @Id
     @GeneratedValue
-    private Long id;
+    Long id;
 
     @Column(nullable = false)
-    private String emailAddress;
+    String emailAddress;
 
     @Column(nullable = false)
-    private Date birthDate;
+    Date birthDate;
 
     @Column(nullable = false)
-    private String country;
+    String country;
 
     @Column(nullable = false)
-    private String sex;
+    String sex;
 
 
 }
