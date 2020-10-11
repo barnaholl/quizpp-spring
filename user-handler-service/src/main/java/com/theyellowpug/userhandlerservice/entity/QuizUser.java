@@ -28,7 +28,4 @@ public class QuizUser {
 
     @OneToOne(cascade = CascadeType.ALL)
     PersonalData personalData;
-
-
-
 }
