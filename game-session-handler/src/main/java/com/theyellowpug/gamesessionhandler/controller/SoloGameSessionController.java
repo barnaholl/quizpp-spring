@@ -42,10 +42,9 @@ public class SoloGameSessionController {
     @PutMapping("/{id}/{answer}")
     public SoloGameSession refreshCurrentSession(@PathVariable("id") Long id,@PathVariable("answer") String answer){
         SoloGameSession gameSession=soloGameSessionRepository.getById(id);
-        gameSession.getCurrentQuestion()
+        if(questionServiceCaller.isAnswerCorrect(gameSession.getCurrentQuestion(),answer)){
+            gameSession.setIsActive(true);
 
-        gameSession.setIsActive(isCorrect);
-        if(isCorrect){
             List<Long> answeredQuestions=gameSession.getAnsweredQuestions();
             answeredQuestions.add(gameSession.getCurrentQuestion());
 
@@ -57,10 +56,21 @@ public class SoloGameSessionController {
 
             gameSession.setCurrentRound((short) (gameSession.getCurrentRound()+1));
         }
+        else{
+            gameSession.setIsActive(false);
+        }
 
         soloGameSessionRepository.save(gameSession);
 
         return gameSession;
+    }
+
+    @PutMapping("/setActive/{id}/{isActive}")
+    public String changesSessionActivity(@PathVariable("id") Long id,@PathVariable("isActive") Boolean isActive){
+        SoloGameSession gameSession=soloGameSessionRepository.getById(id);
+        gameSession.setIsActive(isActive);
+        soloGameSessionRepository.save(gameSession);
+        return gameSession.toString()+" is set to "+isActive;
     }
 
 }
