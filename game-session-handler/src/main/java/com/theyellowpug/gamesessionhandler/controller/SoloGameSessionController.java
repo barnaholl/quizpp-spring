@@ -31,6 +31,7 @@ public class SoloGameSessionController {
                 .build();
         soloGameSessionRepository.save(gameSession);
         return gameSession.getId();
+
     }
 
     @GetMapping("/{id}")

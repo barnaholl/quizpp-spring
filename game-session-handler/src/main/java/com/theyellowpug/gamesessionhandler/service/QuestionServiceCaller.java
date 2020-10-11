@@ -15,8 +15,8 @@ public class QuestionServiceCaller {
     private final String questionHandlerUrl="http://question-handler-service";
 
     public Long getQuestionId(String tag,Short difficulty){
-        QuestionResult result=restTemplate.getForEntity(questionHandlerUrl+"/"+tag+"/"+difficulty,QuestionResult.class).getBody();
-        return result.getId();
+        Long result=restTemplate.getForObject(questionHandlerUrl+"/"+tag+"/"+difficulty,Long.class);
+        return result;
     }
 
 }
