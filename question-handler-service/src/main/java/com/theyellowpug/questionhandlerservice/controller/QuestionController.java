@@ -1,10 +1,12 @@
 package com.theyellowpug.questionhandlerservice.controller;
 
 import com.theyellowpug.questionhandlerservice.entity.Question;
+import com.theyellowpug.questionhandlerservice.model.RenderedQuestion;
 import com.theyellowpug.questionhandlerservice.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -34,11 +36,44 @@ public class QuestionController {
     }
 
     @GetMapping("/{tag}/{difficulty}")
-    public Question getRandomByQuestionTagAndDifficulty(@PathVariable("tag")String tag, @PathVariable("difficulty") short difficulty) {
+    public RenderedQuestion getRandomQuestionModelByTagAndDifficulty(@PathVariable("tag")String tag, @PathVariable("difficulty") short difficulty) {
         List<Question> questions=questionRepository.findAllByTagsAndDifficultyEquals(tag,difficulty);
         if(questions.size()>0){
             Random random=new Random();
-            return questions.get(random.nextInt(questions.size()));
+
+            Question question=questions.get(random.nextInt(questions.size()));
+
+            List<String> questionsOfQuestion=new ArrayList<>();
+            questionsOfQuestion.add(question.getCorrectAnswer());
+            questionsOfQuestion.add(question.getWrongAnswer1());
+            questionsOfQuestion.add(question.getWrongAnswer2());
+            questionsOfQuestion.add(question.getWrongAnswer3());
+
+            int currentIndex=random.nextInt(questionsOfQuestion.size());
+            String answer1=questionsOfQuestion.get(currentIndex);
+            questionsOfQuestion.remove(currentIndex);
+
+            currentIndex=random.nextInt(questionsOfQuestion.size());
+            String answer2=questionsOfQuestion.get(currentIndex);
+            questionsOfQuestion.remove(currentIndex);
+
+            currentIndex=random.nextInt(questionsOfQuestion.size());
+            String answer3=questionsOfQuestion.get(currentIndex);
+            questionsOfQuestion.remove(currentIndex);
+
+            currentIndex=random.nextInt(questionsOfQuestion.size());
+            String answer4=questionsOfQuestion.get(currentIndex);
+
+            RenderedQuestion renderedQuestion= RenderedQuestion.builder()
+                    .id(question.getId())
+                    .question(question.getQuestion())
+                    .answer1(answer1)
+                    .answer2(answer2)
+                    .answer3(answer3)
+                    .answer4(answer4)
+                    .build();
+
+            return renderedQuestion;
         }
         return null;
     }

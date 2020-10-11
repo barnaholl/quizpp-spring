@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Question {
+public class RenderedQuestion {
     private Long id;
 
     private String question;
