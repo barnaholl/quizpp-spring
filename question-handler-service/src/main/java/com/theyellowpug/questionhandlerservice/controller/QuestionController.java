@@ -100,4 +100,9 @@ public class QuestionController {
         return "Successfully updated";
     }
 
+    @GetMapping("/isCorrect/{id}/{answer}")
+    public Boolean isAnswerCorrect(@PathVariable("id") Long id,@PathVariable("answer") String answer){
+        return questionRepository.getById(id).getCorrectAnswer().equals(answer);
+    }
+
 }

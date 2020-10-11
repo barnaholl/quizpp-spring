@@ -19,4 +19,9 @@ public class QuestionServiceCaller {
         return result;
     }
 
+    public Boolean isAnswerCorrect(String answer){
+        Long result=restTemplate.getForObject(questionHandlerUrl+"/"+tag+"/"+difficulty,Long.class);
+    }
+
+
 }

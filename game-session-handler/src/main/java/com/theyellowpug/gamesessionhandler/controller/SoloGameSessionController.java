@@ -39,9 +39,10 @@ public class SoloGameSessionController {
         return soloGameSessionRepository.findById(id);
     }
 
-    @PutMapping("/{id}/{isCorrect}")
-    public SoloGameSession refreshCurrentSession(@PathVariable("id") Long id,@PathVariable("isCorrect") Boolean isCorrect){
+    @PutMapping("/{id}/{answer}")
+    public SoloGameSession refreshCurrentSession(@PathVariable("id") Long id,@PathVariable("answer") String answer){
         SoloGameSession gameSession=soloGameSessionRepository.getById(id);
+        gameSession.getCurrentQuestion()
 
         gameSession.setIsActive(isCorrect);
         if(isCorrect){
