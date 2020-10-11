@@ -11,19 +11,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-@Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class QuizUser {
     @Id
     @GeneratedValue
-    private Long id;
+    Long id;
 
     @Column(nullable = false)
-    private String username;
+    String username;
 
     @Column(nullable = false)
-    private String password;
+    String password;
 
 }
