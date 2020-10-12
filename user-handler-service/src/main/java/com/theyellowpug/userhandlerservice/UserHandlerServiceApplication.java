@@ -11,5 +11,4 @@ public class UserHandlerServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(UserHandlerServiceApplication.class, args);
 	}
-
 }

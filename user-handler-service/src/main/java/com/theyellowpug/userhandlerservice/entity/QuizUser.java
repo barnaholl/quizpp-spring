@@ -5,27 +5,28 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Data
 public class QuizUser {
     @Id
     @GeneratedValue
     Long id;
 
-    @Column(nullable = false)
     String username;
 
-    @Column(nullable = false)
     String password;
 
-    @Column(nullable = false)
     UserRole userRole;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "quizUser")
     PersonalData personalData;
+
 }
