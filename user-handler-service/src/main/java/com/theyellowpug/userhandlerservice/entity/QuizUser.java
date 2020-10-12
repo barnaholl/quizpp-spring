@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 @AllArgsConstructor
@@ -24,6 +21,7 @@ public class QuizUser {
 
     String password;
 
+    @Enumerated(EnumType.STRING)
     UserRole userRole;
 
     @OneToOne(mappedBy = "quizUser")
