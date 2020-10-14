@@ -26,4 +26,6 @@ public class QuizUserController {
         return quizUser.toString()+" saved in the database";
     }
 
+
+
 }
