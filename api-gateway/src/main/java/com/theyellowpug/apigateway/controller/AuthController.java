@@ -52,7 +52,6 @@ public class AuthController {
                     .collect(Collectors.toList());
 
             String token = jwtTokenServices.createToken(username, roles);
-            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 
             Map<Object, Object> model = new HashMap<>();
             model.put("username", username);

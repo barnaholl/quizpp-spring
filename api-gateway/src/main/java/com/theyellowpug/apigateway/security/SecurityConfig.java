@@ -32,10 +32,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/auth/login").permitAll() // allowed by anyone
-                //.antMatchers(HttpMethod.GET, "/vehicles/**").authenticated() // allowed only when signed in
+                .antMatchers( "/game-session-handler/**").authenticated() // allowed only when signed in
+                .antMatchers( "/game-handler/**").authenticated() // allowed only when signed in
+                .antMatchers( "/question-handler/**").authenticated() // allowed only when signed in
                 //.antMatchers(HttpMethod.DELETE, "/vehicles/**").hasRole("ADMIN") // allowed if signed in with ADMIN role
                 .anyRequest().denyAll() // anything else is denied
-        .and()
+                .and()
                 .addFilterBefore(new JwtTokenFilter(jwtTokenServices), UsernamePasswordAuthenticationFilter.class);
     }
 }
