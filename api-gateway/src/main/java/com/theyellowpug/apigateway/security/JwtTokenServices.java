@@ -49,35 +49,5 @@ public class JwtTokenServices {
                 .signWith(SignatureAlgorithm.HS256, secretKey)
                 .compact();
     }
-    String getTokenFromRequest(HttpServletRequest req) {
-        String bearerToken = req.getHeader("Authorization");
-        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7, bearerToken.length());
-        }
-        return null;
-    }
-
-    // checks if the token is valid and not expired.
-    boolean validateToken(String token) {
-        try {
-            Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
-            if (claims.getBody().getExpiration().before(new Date())) {
-                return false;
-            }
-            return true;
-        } catch (JwtException | IllegalArgumentException e) {
-            log.debug("JWT token invalid " + e);
-        }
-        return false;
-    }
-    Authentication parseUserFromTokenInfo(String token) throws UsernameNotFoundException {
-        Claims body = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
-        String username = body.getSubject();
-        List<String> roles = (List<String>) body.get(rolesFieldName);
-        List<SimpleGrantedAuthority> authorities = new LinkedList<>();
-        for (String role : roles) {
-            authorities.add(new SimpleGrantedAuthority(role));
-        }
-        return new UsernamePasswordAuthenticationToken(username, "", authorities);
-    }
 }
+

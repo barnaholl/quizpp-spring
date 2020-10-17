@@ -20,6 +20,11 @@ public class QuizUserController {
         return quizUserRepository.findAll();
     }
 
+    @GetMapping("/{username}")
+    public QuizUser getQuizUserByUsername(@PathVariable("username") String username){
+        return quizUserRepository.findByUsername(username);
+    }
+
     @PostMapping("")
     public String createNewQuizUser(@RequestBody QuizUser quizUser){
         quizUserRepository.save(quizUser);

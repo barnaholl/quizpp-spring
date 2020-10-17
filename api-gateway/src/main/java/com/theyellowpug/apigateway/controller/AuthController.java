@@ -1,6 +1,7 @@
 package com.theyellowpug.apigateway.controller;
 
 import com.theyellowpug.apigateway.model.UserCredentials;
+import com.theyellowpug.apigateway.security.CustomUserDetailsService;
 import com.theyellowpug.apigateway.security.JwtTokenServices;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,24 +29,30 @@ public class AuthController {
 
     private final JwtTokenServices jwtTokenServices;
 
-    public AuthController(AuthenticationManager authenticationManager, JwtTokenServices jwtTokenServices) {
+    private final RestTemplate restTemplate;
+
+    private final CustomUserDetailsService customUserDetailsService;
+
+    public AuthController(AuthenticationManager authenticationManager, JwtTokenServices jwtTokenServices, RestTemplate restTemplate, CustomUserDetailsService customUserDetailsService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenServices = jwtTokenServices;
+        this.restTemplate = restTemplate;
+        this.customUserDetailsService = customUserDetailsService;
     }
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody UserCredentials userCredentials) {
+    public ResponseEntity login(@RequestBody UserCredentials data) {
         try {
-            String username = userCredentials.getUsername();
-            String password = userCredentials.getPassword();
+            String username = data.getUsername();
             // authenticationManager.authenticate calls loadUserByUsername in CustomUserDetailsService
-            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, data.getPassword()));
             List<String> roles = authentication.getAuthorities()
                     .stream()
                     .map(GrantedAuthority::getAuthority)
                     .collect(Collectors.toList());
 
             String token = jwtTokenServices.createToken(username, roles);
+            System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 
             Map<Object, Object> model = new HashMap<>();
             model.put("username", username);

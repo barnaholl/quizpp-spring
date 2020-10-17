@@ -5,20 +5,20 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
 public class QuizUserModel {
 
-    Long id;
-
+    //Long id;
     String username;
 
     String password;
 
-    String userRole;
+    ArrayList<String> roles;
 
-    String personalData;
 
 }

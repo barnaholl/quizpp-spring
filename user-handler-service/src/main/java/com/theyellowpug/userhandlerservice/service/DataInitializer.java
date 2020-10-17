@@ -6,8 +6,11 @@ import com.theyellowpug.userhandlerservice.entity.UserRole;
 import com.theyellowpug.userhandlerservice.repository.PersonalDataRepository;
 import com.theyellowpug.userhandlerservice.repository.QuizUserRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Date;
 
 @Service
@@ -17,16 +20,19 @@ public class DataInitializer implements CommandLineRunner {
 
     private final PersonalDataRepository personalDataRepository;
 
+    private final PasswordEncoder passwordEncoder;
+
     public DataInitializer(QuizUserRepository quizUserRepository, PersonalDataRepository personalDataRepository) {
         this.quizUserRepository = quizUserRepository;
         this.personalDataRepository = personalDataRepository;
+        this.passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
-    private void createQuizUser(String username, String password, UserRole userRole){
+    private void createQuizUser(String username, String password, String userRole){ //UserRole
         QuizUser quizUser= QuizUser.builder()
                 .username(username)
-                .password(password)
-                .userRole(userRole)
+                .password(passwordEncoder.encode(password))
+                .roles(Collections.singletonList(userRole)) //TODO:check
                 .build();
 
         quizUserRepository.save(quizUser);
@@ -46,9 +52,9 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        createQuizUser("player","player",UserRole.PLAYER);
-        createQuizUser("creator","creator",UserRole.CREATOR);
-        createQuizUser("admin","admin",UserRole.ADMIN);
+        createQuizUser("player","player","ROLE_PLAYER");
+        createQuizUser("creator","creator","ROLE_CREATOR");
+        createQuizUser("admin","admin","ROLE_ADMIN");
 
         //createPersonalData("player@quizpp.com",new Date(19960909),"Hungary","Male",quizUserRepository.getByUserRole(UserRole.PLAYER));
     }

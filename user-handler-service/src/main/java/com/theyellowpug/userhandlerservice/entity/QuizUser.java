@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -21,8 +23,12 @@ public class QuizUser {
 
     String password;
 
-    @Enumerated(EnumType.STRING)
-    UserRole userRole;
+    //@Enumerated(EnumType.STRING)
+    //UserRole roles;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Builder.Default
+    List<String> roles=new ArrayList<>();
 
     @OneToOne(mappedBy = "quizUser")
     PersonalData personalData;
