@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,7 +19,7 @@ public class QuizUserModel {
 
     String password;
 
-    ArrayList<String> roles;
+    List<String> roles;
 
 
 }

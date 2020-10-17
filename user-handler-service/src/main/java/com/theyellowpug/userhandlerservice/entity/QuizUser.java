@@ -26,6 +26,7 @@ public class QuizUser {
     //@Enumerated(EnumType.STRING)
     //UserRole roles;
 
+
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
     List<String> roles=new ArrayList<>();

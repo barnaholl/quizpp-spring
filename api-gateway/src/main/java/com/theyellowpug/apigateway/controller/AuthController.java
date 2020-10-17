@@ -73,7 +73,7 @@ public class AuthController {
     public ResponseEntity register(@RequestBody UserCredentials userCredentials) {
         String username = userCredentials.getUsername();
         String password = userCredentials.getPassword();
-        String role = userCredentials.getRoles();
+        //String role = userCredentials.getRoles();
 
         Map<Object, Object> model = new HashMap<>();
         //List<String> errorList = new ArrayList<>();
@@ -99,13 +99,13 @@ public class AuthController {
             model.put("msg", errorMessage);
             return ResponseEntity.ok(model);
         }*/
-        UserCredentials newUserCredentials = UserCredentials.builder()
+        QuizUserModel newQuizUserModel = QuizUserModel.builder()
                 .username(username)
                 .password(passwordEncoder.encode(password))
-                .roles(role)
+                .roles(Collections.singletonList("ROLE_PLAYER"))
                 .build();
 
-        restTemplate.postForEntity(baseUrl,newUserCredentials,String.class);
+        restTemplate.postForEntity(baseUrl,newQuizUserModel,String.class);
         //TODO:Check
 
         List<String> roles = Collections.singletonList("ROLE_PLAYER");

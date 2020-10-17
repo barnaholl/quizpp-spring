@@ -1,5 +1,5 @@
 package com.theyellowpug.userhandlerservice.entity;
 
 public enum UserRole {
-    PLAYER,CREATOR,ADMIN
+    ROLE_PLAYER,ROLE_CREATOR,ROLE_ADMIN
 }
