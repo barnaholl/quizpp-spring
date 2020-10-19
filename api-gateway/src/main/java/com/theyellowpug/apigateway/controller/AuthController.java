@@ -6,7 +6,6 @@ import com.theyellowpug.apigateway.security.CustomUserDetailsService;
 import com.theyellowpug.apigateway.security.JwtTokenServices;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -94,8 +93,6 @@ public class AuthController {
         List<String> roles = Collections.singletonList("ROLE_PLAYER");
         String token = jwtTokenServices.createToken(username, roles);
         model.put("correct", true);
-        model.put("username", username);
-        model.put("roles", roles);
         model.put("token", token);
         return ResponseEntity.ok(model);
     }
