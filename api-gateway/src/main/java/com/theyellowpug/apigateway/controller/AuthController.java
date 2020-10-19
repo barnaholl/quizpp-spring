@@ -13,10 +13,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
@@ -24,6 +21,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
@@ -48,8 +46,11 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody UserCredentials data) {
+        Map<Object, Object> model = new HashMap<>();
+
         try {
             String username = data.getUsername();
+
             // authenticationManager.authenticate calls loadUserByUsername in CustomUserDetailsService
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, data.getPassword()));
             List<String> roles = authentication.getAuthorities()
@@ -59,13 +60,13 @@ public class AuthController {
 
             String token = jwtTokenServices.createToken(username, roles);
 
-            Map<Object, Object> model = new HashMap<>();
-            model.put("username", username);
-            model.put("roles", roles);
+            model.put("correct", true);
             model.put("token", token);
             return ResponseEntity.ok(model);
         } catch (AuthenticationException e) {
-            throw new BadCredentialsException("Invalid username/password supplied");
+            model.put("correct", false);
+            model.put("msg", "Invalid username/password");
+            return ResponseEntity.ok(model);
         }
     }
 
@@ -73,10 +74,8 @@ public class AuthController {
     public ResponseEntity register(@RequestBody UserCredentials userCredentials) {
         String username = userCredentials.getUsername();
         String password = userCredentials.getPassword();
-        //String role = userCredentials.getRoles();
 
         Map<Object, Object> model = new HashMap<>();
-        //List<String> errorList = new ArrayList<>();
 
         if (restTemplate.getForEntity(baseUrl+username, QuizUserModel.class).getBody() != null){
             model.put("correct", false);
@@ -84,21 +83,6 @@ public class AuthController {
             return ResponseEntity.ok(model);
         }
 
-        /*if(!dataValidator.isValidUsername(username, errorList)) {
-            String error = String.join(" , ", errorList);
-            String errorMessage = "Username should have " + error + "!";
-            model.put("correct", false);
-            model.put("msg", errorMessage);
-            return ResponseEntity.ok(model);
-        }
-
-        if (!dataValidator.isValidPassword(password, errorList)) {
-            String error = String.join(" , ", errorList);
-            String errorMessage = "Password should contain " + error + "!";
-            model.put("correct", false);
-            model.put("msg", errorMessage);
-            return ResponseEntity.ok(model);
-        }*/
         QuizUserModel newQuizUserModel = QuizUserModel.builder()
                 .username(username)
                 .password(passwordEncoder.encode(password))
@@ -106,7 +90,6 @@ public class AuthController {
                 .build();
 
         restTemplate.postForEntity(baseUrl,newQuizUserModel,String.class);
-        //TODO:Check
 
         List<String> roles = Collections.singletonList("ROLE_PLAYER");
         String token = jwtTokenServices.createToken(username, roles);
@@ -115,5 +98,5 @@ public class AuthController {
         model.put("roles", roles);
         model.put("token", token);
         return ResponseEntity.ok(model);
-}
+    }
 }
