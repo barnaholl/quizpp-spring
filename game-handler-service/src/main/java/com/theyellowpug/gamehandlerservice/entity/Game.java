@@ -1,9 +1,6 @@
 package com.theyellowpug.gamehandlerservice.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -14,6 +11,7 @@ import java.util.List;
 @Builder
 @Entity
 public class Game {
+
     @Id
     @GeneratedValue
     private Long id;
@@ -29,10 +27,10 @@ public class Game {
     @Column(nullable = false)
     private short difficulty;
 
-    @ElementCollection
-    private List<String> tags;
-
     @Column(nullable = false)
     private String type;
+
+    @ElementCollection
+    private List<Long> playersEnrolled;
 
 }
