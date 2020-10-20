@@ -1,7 +1,6 @@
 package com.theyellowpug.apigateway.controller;
 
 import com.theyellowpug.apigateway.model.GameModel;
-import com.theyellowpug.apigateway.model.QuizUserModel;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +32,12 @@ public class JwtUtilsController {
         List<String> playersEnrolled=gameModel.getPlayersEnrolled();
 
         return playersEnrolled.contains(name);
+    }
+
+    @GetMapping("/username")
+    public String getCurrentUser(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return  (String) authentication.getPrincipal();
     }
 
 }
