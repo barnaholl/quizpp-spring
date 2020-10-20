@@ -37,15 +37,15 @@ public class GameController {
         return "Game at id: "+id+" is successfully deleted";
     }
 
-    @PutMapping("/{id}/{userId}")
-    public String addPlayerToPlayersEnrolled(@PathVariable("id") Long id,@PathVariable("userId") Long userId){
+    @PutMapping("/{id}/{username}")
+    public String addPlayerToPlayersEnrolled(@PathVariable("id") Long id,@PathVariable("username") String username){
         Game currentGame=gameRepository.getById(id);
-        List<Long> playersEnrolled=currentGame.getPlayersEnrolled();
-        playersEnrolled.add(userId);
+        List<String> playersEnrolled=currentGame.getPlayersEnrolled();
+        playersEnrolled.add(username);
         currentGame.setPlayersEnrolled(playersEnrolled);
         gameRepository.save(currentGame);
 
-        return "User with id:"+userId+"enrolled "+currentGame.toString();
+        return "User: " +username+" is enrolled "+currentGame.toString();
     }
 
 }

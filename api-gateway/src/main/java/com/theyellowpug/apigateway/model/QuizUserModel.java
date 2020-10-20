@@ -14,7 +14,8 @@ import java.util.List;
 @Builder
 public class QuizUserModel {
 
-    //Long id;
+    Long id;
+
     String username;
 
     String password;

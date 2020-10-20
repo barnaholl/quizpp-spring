@@ -31,6 +31,6 @@ public class Game {
     private String type;
 
     @ElementCollection
-    private List<Long> playersEnrolled;
+    private List<String> playersEnrolled;
 
 }

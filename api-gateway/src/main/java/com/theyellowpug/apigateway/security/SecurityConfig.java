@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 //.headers().httpStrictTransportSecurity().disable().and()
                 .authorizeRequests()
-                .antMatchers("/auth/**").permitAll() // allowed by anyone
+                .antMatchers("/jwtUtils/**","/auth/**").permitAll() // allowed by anyone
                 .antMatchers( "/game-session-handler/**").permitAll()// allowed only when signed in
                 .antMatchers( "/question-handler/**").authenticated()
                 .antMatchers("/game-handler/**").permitAll() // allowed only when signed in
