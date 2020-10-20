@@ -14,5 +14,4 @@ import java.util.List;
 public class UserCredentials {
     private String username;
     private String password;
-    //private List<String> roles;
 }
