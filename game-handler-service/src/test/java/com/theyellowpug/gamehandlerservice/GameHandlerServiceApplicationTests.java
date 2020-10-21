@@ -50,4 +50,5 @@ class GameHandlerServiceApplicationTests {
 		assertThat(gameRepository.findAll().get(1).getTitle()).isEqualTo(game.getTitle());
 	}
 
-	}
+
+}

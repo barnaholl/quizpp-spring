@@ -26,7 +26,7 @@ public class GameController {
 
     @GetMapping("/{id}")
     public Game getGameById(@PathVariable("id") Long id){
-        return gameRepository.getById(id);
+        return gameService.getGameById(id);
     }
 
     @PostMapping("/")
@@ -36,19 +36,13 @@ public class GameController {
 
     @DeleteMapping("/{id}")
     public String deleteGameById(@PathVariable("id") Long id){
-        gameRepository.deleteById(id);
-        return "Game at id: "+id+" is successfully deleted";
+        return gameService.deleteGameById(id);
     }
 
     @PutMapping("/{id}/{username}")
     public String addPlayerToPlayersEnrolled(@PathVariable("id") Long id,@PathVariable("username") String username){
-        Game currentGame=gameRepository.getById(id);
-        List<String> playersEnrolled=currentGame.getPlayersEnrolled();
-        playersEnrolled.add(username);
-        currentGame.setPlayersEnrolled(playersEnrolled);
-        gameRepository.save(currentGame);
 
-        return "User: " +username+" is enrolled "+currentGame.toString();
+        return gameService.setPlayersEnrolled(id, username);
     }
 
 }
