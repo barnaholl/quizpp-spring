@@ -9,28 +9,45 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 class GameHandlerServiceApplicationTests {
 
-	//@MockBean
-	//private GameRepository gameRepository;
+	@Autowired
+	private GameRepository gameRepository;
 
 	@Autowired
 	private GameService gameService;
 
 
 	@Test
-	public void getAllGamesSize1() {
+	public void getAllGamesSizeTest() {
 		List<Game> games=gameService.getAllGames();
 		assertThat(games.size()).isEqualTo(1);
 	}
 	@Test
-	public void getAllGamesReturnWithGame(){
+	public void getAllGamesReturnWithGameTest(){
 		List<Game> games=gameService.getAllGames();
 		assertThat(games.get(0)).isInstanceOf(Game.class);
 	}
 
-}
+	@Test
+	public void createGameSizeTest(){
+		gameService.createGame(Game.builder().title("test").tag("test").type("test").difficulty((short)1).description("test").build());
+		List<Game> games=gameRepository.findAll();
+
+		assertThat(games.size()).isEqualTo(2);
+	}
+
+	@Test
+	public void createGameObjectQualityTest() {
+		Game game=Game.builder().title("test").tag("test").type("test").difficulty((short)1).description("test").playersEnrolled(null).build();
+		gameService.createGame(game);
+
+		assertThat(gameRepository.findAll().get(1).getTitle()).isEqualTo(game.getTitle());
+	}
+
+	}

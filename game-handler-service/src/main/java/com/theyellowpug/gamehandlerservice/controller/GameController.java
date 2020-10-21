@@ -12,6 +12,7 @@ import java.util.List;
 @RequestMapping("")
 public class GameController {
 
+    //TODO:DELETE
     @Autowired
     private GameRepository gameRepository;
 
@@ -30,8 +31,7 @@ public class GameController {
 
     @PostMapping("/")
     public String createGame(@RequestBody Game game){
-        gameRepository.save(game);
-        return game.getTitle()+" game is created";
+        return gameService.createGame(game);
     }
 
     @DeleteMapping("/{id}")

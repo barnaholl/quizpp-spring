@@ -19,5 +19,10 @@ public class GameService {
         return gameRepository.findAll();
     }
 
+    public String createGame(Game game){
+        gameRepository.save(game);
+        return game.getTitle()+" game is created";
+    }
+
 
 }
