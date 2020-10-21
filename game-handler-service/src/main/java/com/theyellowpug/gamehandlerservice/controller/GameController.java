@@ -2,12 +2,12 @@ package com.theyellowpug.gamehandlerservice.controller;
 
 import com.theyellowpug.gamehandlerservice.entity.Game;
 import com.theyellowpug.gamehandlerservice.repository.GameRepository;
+import com.theyellowpug.gamehandlerservice.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@CrossOrigin
 @RestController
 @RequestMapping("")
 public class GameController {
@@ -15,9 +15,12 @@ public class GameController {
     @Autowired
     private GameRepository gameRepository;
 
+    @Autowired
+    private GameService gameService;
+
     @GetMapping("/")
-    public List<Game> getGames(){
-        return gameRepository.findAll();
+    public List<Game> getAllGames(){
+        return gameService.getAllGames();
     }
 
     @GetMapping("/{id}")

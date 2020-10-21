@@ -16,7 +16,5 @@ public class GameHandlerServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GameHandlerServiceApplication.class, args);
 	}
-
-
 }
 
