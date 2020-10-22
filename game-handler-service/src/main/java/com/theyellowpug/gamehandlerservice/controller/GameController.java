@@ -12,10 +12,6 @@ import java.util.List;
 @RequestMapping("")
 public class GameController {
 
-    //TODO:DELETE
-    @Autowired
-    private GameRepository gameRepository;
-
     @Autowired
     private GameService gameService;
 
@@ -41,7 +37,6 @@ public class GameController {
 
     @PutMapping("/{id}/{username}")
     public String addPlayerToPlayersEnrolled(@PathVariable("id") Long id,@PathVariable("username") String username){
-
         return gameService.setPlayersEnrolled(id, username);
     }
 

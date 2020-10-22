@@ -18,14 +18,14 @@ public class ScheduledOperations {
         this.gameRepository = gameRepository;
     }
 
-    //@Scheduled(initialDelay = 60*1000L,fixedDelay = 60*1000L)
+    @Scheduled(initialDelay = 60*1000L,fixedDelay = 60*1000L)
     private void createGame(){
         Game game= Game.builder()
                 .title("Game number "+counter)
                 .difficulty((short) 1)
                 .tag("general")
                 .type("free")
-                .description("Auto generated game at:" +new Date())
+                .description("Auto generated game at: " +new Date())
                 .build();
 
         gameRepository.save(game);
