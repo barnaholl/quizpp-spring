@@ -19,6 +19,7 @@ public class QuizUser {
     @GeneratedValue
     Long id;
 
+    @Column(unique = true)
     String username;
 
     String password;
@@ -26,12 +27,14 @@ public class QuizUser {
     //@Enumerated(EnumType.STRING)
     //UserRole roles;
 
-
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
     List<String> roles=new ArrayList<>();
 
     @OneToOne(mappedBy = "quizUser")
     PersonalData personalData;
+
+    @OneToOne(mappedBy = "user")
+    UserCurrency userCurrency;
 
 }

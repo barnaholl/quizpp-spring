@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 @Builder
@@ -18,11 +18,9 @@ import javax.persistence.Id;
 public class UserCurrency {
 
     @Id
-    @GeneratedValue
-    private Long id;
-
     @Column(nullable = false)
-    private Long userId;
+    @OneToOne
+    private QuizUser user;
 
     @Column(nullable = false)
     private Long score;

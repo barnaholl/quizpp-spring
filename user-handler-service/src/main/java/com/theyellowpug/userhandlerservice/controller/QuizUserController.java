@@ -2,32 +2,35 @@ package com.theyellowpug.userhandlerservice.controller;
 
 import com.theyellowpug.userhandlerservice.entity.QuizUser;
 import com.theyellowpug.userhandlerservice.repository.QuizUserRepository;
+import com.theyellowpug.userhandlerservice.service.QuizUserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-//@CrossOrigin
 public class QuizUserController {
     private final QuizUserRepository quizUserRepository;
+    private final QuizUserService quizUserService;
 
-    public QuizUserController(QuizUserRepository quizUserRepository) {
+
+    public QuizUserController(QuizUserRepository quizUserRepository, QuizUserService quizUserService) {
         this.quizUserRepository = quizUserRepository;
+        this.quizUserService = quizUserService;
     }
 
     @GetMapping("/all")
     public List<QuizUser> getAllQuizUser(){
-        return quizUserRepository.findAll();
+        return quizUserService.getAllQuizUser();
     }
 
     @GetMapping("/{username}")
     public QuizUser getQuizUserByUsername(@PathVariable("username") String username){
-        return quizUserRepository.findByUsername(username);
+        return quizUserService.getQuizUserByUsername(username);
     }
 
     @PostMapping("")
     public String createNewQuizUser(@RequestBody QuizUser quizUser){
-        quizUserRepository.save(quizUser);
+        quizUserService.createNewQuizUser(quizUser);
         return quizUser.toString()+" saved in the database";
     }
 
