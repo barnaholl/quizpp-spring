@@ -35,7 +35,7 @@ public class DataInitializer implements CommandLineRunner {
                 .roles(Collections.singletonList(userRole)) //TODO:check
                 .build();
 
-        quizUserRepository.save(quizUser);
+        quizUserRepository.saveAndFlush(quizUser);
     }
 
     private void createPersonalData(String emailAddress, Date birthDate, String country, String sex,QuizUser quizUser){
@@ -56,6 +56,6 @@ public class DataInitializer implements CommandLineRunner {
         createQuizUser("creator","creator","ROLE_CREATOR");
         createQuizUser("admin","admin","ROLE_ADMIN");
 
-        //createPersonalData("player@quizpp.com",new Date(19960909),"Hungary","Male",quizUserRepository.getByUserRole(UserRole.PLAYER));
+        //createPersonalData("player@quizpp.com",new Date(),"Hungary","Male",quizUserRepository.findByUsername("player"));
     }
 }

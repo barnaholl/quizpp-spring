@@ -10,4 +10,5 @@ public interface QuizUserRepository extends JpaRepository<QuizUser,Long> {
     QuizUser getByRoles(UserRole roles);
 
     QuizUser findByUsername(String username);
+
 }

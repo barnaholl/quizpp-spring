@@ -34,7 +34,7 @@ public class QuizUser {
     @OneToOne(mappedBy = "quizUser")
     PersonalData personalData;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "quizUser")
     UserCurrency userCurrency;
 
 }

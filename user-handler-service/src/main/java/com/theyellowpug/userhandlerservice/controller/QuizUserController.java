@@ -9,12 +9,9 @@ import java.util.List;
 
 @RestController
 public class QuizUserController {
-    private final QuizUserRepository quizUserRepository;
     private final QuizUserService quizUserService;
 
-
-    public QuizUserController(QuizUserRepository quizUserRepository, QuizUserService quizUserService) {
-        this.quizUserRepository = quizUserRepository;
+    public QuizUserController(QuizUserService quizUserService) {
         this.quizUserService = quizUserService;
     }
 
@@ -33,7 +30,5 @@ public class QuizUserController {
         quizUserService.createNewQuizUser(quizUser);
         return quizUser.toString()+" saved in the database";
     }
-
-
 
 }

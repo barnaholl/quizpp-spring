@@ -3,8 +3,6 @@ package com.theyellowpug.userhandlerservice.service;
 import com.theyellowpug.userhandlerservice.entity.QuizUser;
 import com.theyellowpug.userhandlerservice.repository.QuizUserRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 

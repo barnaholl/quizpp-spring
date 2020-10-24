@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 @Builder
@@ -18,9 +15,11 @@ import javax.persistence.OneToOne;
 public class UserCurrency {
 
     @Id
-    @Column(nullable = false)
-    @OneToOne
-    private QuizUser user;
+    @GeneratedValue
+    private Long id;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private QuizUser quizUser;
 
     @Column(nullable = false)
     private Long score;
