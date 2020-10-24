@@ -3,6 +3,7 @@ package com.theyellowpug.gamesessionhandler.service;
 import com.theyellowpug.gamesessionhandler.entity.SoloGameSession;
 import com.theyellowpug.gamesessionhandler.repository.SoloGameSessionRepository;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
