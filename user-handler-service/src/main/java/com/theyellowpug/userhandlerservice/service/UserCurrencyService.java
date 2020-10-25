@@ -21,4 +21,9 @@ public class UserCurrencyService {
         UserCurrency userCurrency=userCurrencyRepository.getById(quizUser);
         userCurrency.setScore(userCurrency.getScore()+score);
     }
+
+    public void initUserCurrency(QuizUser quizUser){
+        UserCurrency userCurrency= UserCurrency.builder().score((long) 0).quizUser(quizUser).build();
+        userCurrencyRepository.save(userCurrency);
+    }
 }

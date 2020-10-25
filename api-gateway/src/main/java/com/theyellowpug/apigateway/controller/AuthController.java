@@ -72,7 +72,6 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody UserCredentials userCredentials) {
         String username = userCredentials.getUsername();
-        String password = userCredentials.getPassword();
 
         Map<Object, Object> model = new HashMap<>();
 
@@ -82,13 +81,13 @@ public class AuthController {
             return ResponseEntity.ok(model);
         }
 
-        QuizUserModel newQuizUserModel = QuizUserModel.builder()
-                .username(username)
-                .password(passwordEncoder.encode(password))
-                .roles(Collections.singletonList("ROLE_PLAYER"))
-                .build();
+        userCredentials.setPassword(passwordEncoder.encode(userCredentials.getPassword()));
+        userCredentials.setRoles(Collections.singletonList("ROLE_PLAYER"));
 
-        restTemplate.postForEntity(baseUrl,newQuizUserModel,String.class);
+        System.out.println("AAAAAAAAAAAAAAAAA");
+        System.out.println(userCredentials);
+
+        restTemplate.postForEntity(baseUrl,userCredentials,String.class);
 
         List<String> roles = Collections.singletonList("ROLE_PLAYER");
         String token = jwtTokenServices.createToken(username, roles);

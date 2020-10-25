@@ -22,6 +22,7 @@ public class QuizUserService {
     public QuizUser getQuizUserByUsername(String username){
         return quizUserRepository.findByUsername(username);
     }
+
     public void createNewQuizUser(QuizUser quizUser){
         quizUserRepository.save(quizUser);
     }

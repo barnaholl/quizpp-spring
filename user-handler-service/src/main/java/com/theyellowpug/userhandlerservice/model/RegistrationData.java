@@ -1,4 +1,4 @@
-package com.theyellowpug.apigateway.model;
+package com.theyellowpug.userhandlerservice.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 import java.util.List;
 
-@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserCredentials {
+@Data
+public class RegistrationData {
     private Long id;
 
     private String username;
