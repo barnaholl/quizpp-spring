@@ -84,9 +84,6 @@ public class AuthController {
         userCredentials.setPassword(passwordEncoder.encode(userCredentials.getPassword()));
         userCredentials.setRoles(Collections.singletonList("ROLE_PLAYER"));
 
-        System.out.println("AAAAAAAAAAAAAAAAA");
-        System.out.println(userCredentials);
-
         restTemplate.postForEntity(baseUrl,userCredentials,String.class);
 
         List<String> roles = Collections.singletonList("ROLE_PLAYER");

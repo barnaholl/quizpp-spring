@@ -5,5 +5,5 @@ import com.theyellowpug.userhandlerservice.entity.UserCurrency;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserCurrencyRepository extends JpaRepository<UserCurrency, Long> {
-    UserCurrency getById(QuizUser quizUser);
+    UserCurrency getByQuizUser(QuizUser quizUser);
 }

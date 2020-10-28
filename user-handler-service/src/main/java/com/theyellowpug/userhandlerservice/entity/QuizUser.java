@@ -1,9 +1,8 @@
 package com.theyellowpug.userhandlerservice.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -31,9 +30,15 @@ public class QuizUser {
     @Builder.Default
     List<String> roles=new ArrayList<>();
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonBackReference
     @OneToOne(mappedBy = "quizUser")
     PersonalData personalData;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonBackReference
     @OneToOne(mappedBy = "quizUser")
     UserCurrency userCurrency;
 

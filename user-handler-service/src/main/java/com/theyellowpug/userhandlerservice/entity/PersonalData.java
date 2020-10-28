@@ -1,9 +1,9 @@
 package com.theyellowpug.userhandlerservice.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -26,6 +26,9 @@ public class PersonalData {
 
     String country;
 
+    //@ToString.Exclude
+    //@EqualsAndHashCode.Exclude
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL)
     QuizUser quizUser;
 
