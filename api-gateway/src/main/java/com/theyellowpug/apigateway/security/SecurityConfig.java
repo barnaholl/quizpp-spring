@@ -39,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/jwtUtils/**","/auth/**").permitAll() // allowed by anyone
                 .antMatchers( "/game-session-handler/**").permitAll()// allowed only when signed in
                 .antMatchers( "/question-handler/**").authenticated()
+                .antMatchers( "/user-handler/**").authenticated()
                 .antMatchers("/game-handler/**").permitAll() // allowed only when signed in
                 //.antMatchers(HttpMethod.DELETE, "/vehicles/**").hasRole("ADMIN") // allowed if signed in with ADMIN role
                 .anyRequest().denyAll() // anything else is denied
