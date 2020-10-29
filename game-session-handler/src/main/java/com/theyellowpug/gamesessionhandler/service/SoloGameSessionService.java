@@ -4,6 +4,8 @@ import com.theyellowpug.gamesessionhandler.entity.SoloGameSession;
 import com.theyellowpug.gamesessionhandler.repository.SoloGameSessionRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +22,8 @@ public class SoloGameSessionService {
     }
 
     public Long createSoloGameSession(Long gameId, Short difficulty, String tag){
+        LocalDateTime roundEnd=LocalDateTime.now().plusSeconds(30);
+
         SoloGameSession gameSession = SoloGameSession.builder()
                 .gameId(gameId)
                 .difficulty(difficulty)
@@ -27,6 +31,7 @@ public class SoloGameSessionService {
                 .isActive(true)
                 .currentRound((short) 1)
                 .currentQuestion(questionServiceCaller.getQuestionId(tag, difficulty))
+                .roundEnd(roundEnd)
                 .build();
         soloGameSessionRepository.save(gameSession);
         return gameSession.getId();

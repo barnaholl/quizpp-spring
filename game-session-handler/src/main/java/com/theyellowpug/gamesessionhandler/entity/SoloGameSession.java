@@ -3,6 +3,9 @@ package com.theyellowpug.gamesessionhandler.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -34,6 +37,9 @@ public class SoloGameSession {
 
     @Column(nullable = false)
     Short currentRound;
+
+    @Column(nullable = false)
+    LocalDateTime roundEnd;
 
     //TODO:User
 
