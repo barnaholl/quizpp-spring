@@ -56,6 +56,8 @@ public class SoloGameSessionService {
             gameSession.setCurrentQuestion(newQuestion);
 
             gameSession.setCurrentRound((short) (gameSession.getCurrentRound()+1));
+
+            gameSession.setRoundEnd(LocalDateTime.now().plusSeconds(30));
         }
         else{
             gameSession.setIsActive(false);
