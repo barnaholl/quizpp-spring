@@ -16,7 +16,7 @@ import javax.persistence.OneToOne;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class GamesPlayed {
+public class GameHistory {
 
     @Id
     @GeneratedValue
@@ -27,4 +27,6 @@ public class GamesPlayed {
     QuizUser quizUser;
 
     Long gameId;
+
+    Long gameSessionId;
 }

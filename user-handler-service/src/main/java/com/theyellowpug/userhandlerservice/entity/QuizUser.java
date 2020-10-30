@@ -1,7 +1,6 @@
 package com.theyellowpug.userhandlerservice.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -46,7 +45,7 @@ public class QuizUser {
     @EqualsAndHashCode.Exclude
     @JsonBackReference
     @OneToOne(mappedBy = "quizUser")
-    GamesPlayed gamesPlayed;
+    GameHistory gameHistory;
 
 
 }
