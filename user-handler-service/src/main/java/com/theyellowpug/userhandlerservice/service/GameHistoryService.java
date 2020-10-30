@@ -30,4 +30,10 @@ public class GameHistoryService {
         gameHistory.setGameSessionIds(gameSessionIds);
         gameHistoryRepository.save(gameHistory);
     }
+    public List<Long> getGameSessionIdsByUsername(String username){
+        QuizUser quizUser=quizUserRepository.findByUsername(username);
+        GameHistory gameHistory=gameHistoryRepository.getByQuizUser(quizUser);
+        List<Long> gameSessionIds=gameHistory.getGameSessionIds();
+        return gameSessionIds;
+    }
 }
