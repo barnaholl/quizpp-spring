@@ -42,4 +42,11 @@ public class QuizUser {
     @OneToOne(mappedBy = "quizUser")
     UserCurrency userCurrency;
 
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @JsonBackReference
+    @OneToOne(mappedBy = "quizUser")
+    GamesPlayed gamesPlayed;
+
+
 }
