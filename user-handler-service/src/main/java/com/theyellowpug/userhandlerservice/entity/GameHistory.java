@@ -6,10 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Builder
@@ -26,7 +24,8 @@ public class GameHistory {
     @OneToOne
     QuizUser quizUser;
 
-    Long gameId;
+    //Long gameId;
 
-    Long gameSessionId;
+    @ElementCollection
+    List<Long> gameSessionIds;
 }
