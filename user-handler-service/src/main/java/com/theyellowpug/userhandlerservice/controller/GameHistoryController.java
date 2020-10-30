@@ -1,8 +1,7 @@
 package com.theyellowpug.userhandlerservice.controller;
 
 import com.theyellowpug.userhandlerservice.service.GameHistoryService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/game-history")
@@ -11,5 +10,10 @@ public class GameHistoryController {
 
     public GameHistoryController(GameHistoryService gameHistoryService) {
         this.gameHistoryService = gameHistoryService;
+    }
+    @PostMapping("/{username}/{gameSessionId}")
+    public String addGameSessionByUsername(@PathVariable("username") String username,@PathVariable("gameSessionId") Long gameSessionId){
+        gameHistoryService.addGameSessionIdByUsername(username,gameSessionId);
+        return "gameSessionId: "+gameSessionId+" added to the GameHistory of user: "+username;
     }
 }
