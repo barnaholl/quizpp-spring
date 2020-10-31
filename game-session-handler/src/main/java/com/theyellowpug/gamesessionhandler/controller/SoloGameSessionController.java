@@ -21,9 +21,9 @@ public class SoloGameSessionController {
     }
 
 
-    @PostMapping("/{gameId}/{tag}/{difficulty}")
-    public Long createSoloGameSession(@PathVariable("gameId") Long gameId,@PathVariable("difficulty") Short difficulty,@PathVariable("tag") String tag){
-        return soloGameSessionService.createSoloGameSession(gameId, difficulty, tag);
+    @PostMapping("/{gameId}/{username}/{tag}/{difficulty}")
+    public Long createSoloGameSession(@PathVariable("gameId") Long gameId,@PathVariable("username") String username,@PathVariable("difficulty") Short difficulty,@PathVariable("tag") String tag){
+        return soloGameSessionService.createSoloGameSession(gameId,username,difficulty, tag);
     }
 
     @GetMapping("/{id}")

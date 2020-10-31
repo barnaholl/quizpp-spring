@@ -23,4 +23,5 @@ public class GameHistoryController {
     public List<Long> getGameSessionIdsByUsername(@PathVariable("username") String username){
         return gameHistoryService.getGameSessionIdsByUsername(username);
     }
+
 }

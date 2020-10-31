@@ -20,11 +20,12 @@ public class SoloGameSessionService {
         this.questionServiceCaller = questionServiceCaller;
     }
 
-    public Long createSoloGameSession(Long gameId, Short difficulty, String tag){
+    public Long createSoloGameSession(Long gameId,String username, Short difficulty, String tag){
         LocalDateTime roundEnd=LocalDateTime.now().plusSeconds(30);
 
         SoloGameSession gameSession = SoloGameSession.builder()
                 .gameId(gameId)
+                .username(username)
                 .difficulty(difficulty)
                 .tag(tag)
                 .isActive(true)

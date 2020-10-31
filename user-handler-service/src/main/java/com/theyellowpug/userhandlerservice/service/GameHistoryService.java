@@ -15,6 +15,8 @@ public class GameHistoryService {
     private final QuizUserRepository quizUserRepository;
     private final RestTemplate restTemplate;
 
+    private final String isGameSessionExistUrl="http://game-session-handler-service/isExist/";
+
     public GameHistoryService(GameHistoryRepository gameHistoryRepository, QuizUserRepository quizUserRepository, RestTemplate restTemplate) {
         this.gameHistoryRepository = gameHistoryRepository;
         this.quizUserRepository = quizUserRepository;
@@ -41,7 +43,7 @@ public class GameHistoryService {
     }
 
     public Boolean isGameSessionExist(Long gameSessionId){
-        //Boolean isExist=restTemplate.getForObject(getGameByIdUrl+gameId, GameModel.class).getBody();
-        return false;
+        Boolean isExist=restTemplate.getForObject(isGameSessionExistUrl+gameSessionId, Boolean.class);
+        return isExist;
     }
 }

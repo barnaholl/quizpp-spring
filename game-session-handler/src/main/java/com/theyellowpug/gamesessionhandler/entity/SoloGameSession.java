@@ -22,6 +22,9 @@ public class SoloGameSession {
     Long gameId;
 
     @Column(nullable = false)
+    String username;
+
+    @Column(nullable = false)
     Short difficulty;
 
     @Column(nullable = false)
@@ -41,7 +44,7 @@ public class SoloGameSession {
     @Column(nullable = false)
     LocalDateTime roundEnd;
 
-    //TODO:User
+
 
 
 }
