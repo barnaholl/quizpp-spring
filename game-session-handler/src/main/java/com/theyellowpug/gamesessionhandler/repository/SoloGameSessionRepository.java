@@ -5,4 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SoloGameSessionRepository extends JpaRepository<SoloGameSession,Long> {
     SoloGameSession getById(Long id);
+
+    Boolean existsByGameIdAndUsername(Long gameId, String username);
+
 }

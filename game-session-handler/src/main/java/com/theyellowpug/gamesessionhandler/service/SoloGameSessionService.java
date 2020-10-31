@@ -74,8 +74,8 @@ public class SoloGameSessionService {
         soloGameSessionRepository.save(gameSession);
     }
 
-    public Boolean isSoloGameSessionExist(Long soloGameSessionId){
-        return soloGameSessionRepository.existsById(soloGameSessionId);
+    public Boolean isSoloGameSessionExist(Long gameId,String username){
+        return soloGameSessionRepository.existsByGameIdAndUsername(gameId,username);
     }
 
 }

@@ -42,9 +42,9 @@ public class SoloGameSessionController {
         return "Game with id: "+id+" is set to "+isActive;
     }
 
-    @GetMapping("/isExist/{id}")
-    public Boolean isSoloGameSessionExist(@PathVariable("id") Long id){
-        return soloGameSessionService.isSoloGameSessionExist(id);
+    @GetMapping("/isExistByGameIdAndUsername/{id}/{username}")
+    public Boolean isSoloGameSessionExist(@PathVariable("id") Long id,@PathVariable("username") String username){
+        return soloGameSessionService.isSoloGameSessionExist(id,username);
     }
 
 }
