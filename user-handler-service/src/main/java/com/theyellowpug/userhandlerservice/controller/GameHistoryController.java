@@ -19,9 +19,9 @@ public class GameHistoryController {
         return "gameSessionId: "+gameSessionId+" added to the GameHistory of user: "+username;
     }
 
-    @GetMapping("/{username}")
-    public List<Long> getGameSessionIdsByUsername(@PathVariable("username") String username){
-        return gameHistoryService.getGameSessionIdsByUsername(username);
+    @GetMapping("/isGameSessionExistByGameIdAndUsername/{gameId}/{username}")
+    public Boolean isGameSessionExistByUsername(@PathVariable("gameId") Long gameId, @PathVariable("username") String username){
+        return gameHistoryService.isGameSessionExist(gameId, username);
     }
 
 }
