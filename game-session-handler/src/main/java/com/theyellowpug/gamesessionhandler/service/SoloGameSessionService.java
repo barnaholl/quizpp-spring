@@ -5,7 +5,6 @@ import com.theyellowpug.gamesessionhandler.repository.SoloGameSessionRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,6 +71,10 @@ public class SoloGameSessionService {
         SoloGameSession gameSession=soloGameSessionRepository.getById(id);
         gameSession.setIsActive(isActive);
         soloGameSessionRepository.save(gameSession);
+    }
+
+    public Boolean isSoloGameSessionExist(Long soloGameSessionId){
+        return soloGameSessionRepository.existsById(soloGameSessionId);
     }
 
 }

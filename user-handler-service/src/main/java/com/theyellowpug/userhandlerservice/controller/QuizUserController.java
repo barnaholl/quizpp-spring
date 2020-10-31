@@ -1,11 +1,8 @@
 package com.theyellowpug.userhandlerservice.controller;
 
-import com.theyellowpug.userhandlerservice.entity.GameHistory;
 import com.theyellowpug.userhandlerservice.entity.PersonalData;
 import com.theyellowpug.userhandlerservice.entity.QuizUser;
-import com.theyellowpug.userhandlerservice.entity.UserCurrency;
 import com.theyellowpug.userhandlerservice.model.RegistrationData;
-import com.theyellowpug.userhandlerservice.repository.QuizUserRepository;
 import com.theyellowpug.userhandlerservice.service.GameHistoryService;
 import com.theyellowpug.userhandlerservice.service.PersonalDataService;
 import com.theyellowpug.userhandlerservice.service.QuizUserService;
