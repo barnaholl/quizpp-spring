@@ -36,10 +36,10 @@ public class SoloGameSessionController {
         return soloGameSessionService.setGameSessionData(id, answer);
     }
 
-    @PutMapping("/setActive/{id}/{isActive}")
-    public String changesSessionActivity(@PathVariable("id") Long id,@PathVariable("isActive") Boolean isActive){
-        soloGameSessionService.setSessionActivity(id, isActive);
-        return "Game with id: "+id+" is set to "+isActive;
+    @PutMapping("/setActive/{id}/{isActive}/{isGameWon}")
+    public String changesSessionActivity(@PathVariable("id") Long id,@PathVariable("isActive") Boolean isActive, @PathVariable("isGameWon") Boolean isGameWon){
+        soloGameSessionService.setSessionActivity(id, isActive,isGameWon);
+        return "Game with id: "+id+" is set to activity: "+isActive+" and to isGameWon: "+isGameWon;
     }
 
     @GetMapping("/isExistByGameIdAndUsername/{id}/{username}")

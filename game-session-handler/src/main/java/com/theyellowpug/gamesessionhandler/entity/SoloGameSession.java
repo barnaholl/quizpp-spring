@@ -36,13 +36,16 @@ public class SoloGameSession {
     Long currentQuestion;
 
     @Column(nullable = false)
-    Boolean isActive;
-
-    @Column(nullable = false)
     Short currentRound;
 
     @Column(nullable = false)
     LocalDateTime roundEnd;
+
+    @Column(nullable = false)
+    Boolean isActive;
+
+    @Column(nullable = false)
+    Boolean isGameWon;
 
 
 

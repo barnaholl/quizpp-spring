@@ -29,6 +29,7 @@ public class SoloGameSessionService {
                 .difficulty(difficulty)
                 .tag(tag)
                 .isActive(true)
+                .isGameWon(false)
                 .currentRound((short) 1)
                 .currentQuestion(questionServiceCaller.getQuestionId(tag, difficulty))
                 .roundEnd(roundEnd)
@@ -68,9 +69,10 @@ public class SoloGameSessionService {
         return gameSession;
     }
 
-    public void setSessionActivity(Long id, Boolean isActive){
+    public void setSessionActivity(Long id, Boolean isActive, Boolean isGameWon){
         SoloGameSession gameSession=soloGameSessionRepository.getById(id);
         gameSession.setIsActive(isActive);
+        gameSession.setIsGameWon(isGameWon);
         soloGameSessionRepository.save(gameSession);
     }
 
