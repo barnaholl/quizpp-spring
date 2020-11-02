@@ -30,6 +30,8 @@ public class SoloGameSessionModel {
 
     Boolean isActive;
 
+    Boolean isGameWon;
+
     Short currentRound;
 
     LocalDateTime roundEnd;
