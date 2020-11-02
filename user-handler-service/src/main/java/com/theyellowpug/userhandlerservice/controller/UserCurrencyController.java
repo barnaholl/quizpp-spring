@@ -1,10 +1,7 @@
 package com.theyellowpug.userhandlerservice.controller;
 
 import com.theyellowpug.userhandlerservice.service.UserCurrencyService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user-currency")
@@ -19,5 +16,11 @@ public class UserCurrencyController {
     @GetMapping("/{username}")
     public Long getScoreByUsername(@PathVariable("username") String username){
         return userCurrencyService.getScoreByUsername(username);
+    }
+
+    @PutMapping("/{username}/{score}")
+    public String addScoreByUsername(@PathVariable("username") String username,@PathVariable("score") Long score){
+        userCurrencyService.addScoreByUsername(username, score);
+        return score+" score added to user: "+username;
     }
 }

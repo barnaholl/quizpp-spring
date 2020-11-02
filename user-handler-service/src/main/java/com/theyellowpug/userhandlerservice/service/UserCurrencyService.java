@@ -20,13 +20,13 @@ public class UserCurrencyService {
         QuizUser quizUser=quizUserService.getQuizUserByUsername(username);
         UserCurrency userCurrency=userCurrencyRepository.getByQuizUser(quizUser);
         userCurrency.setScore(userCurrency.getScore()+score);
+        userCurrencyRepository.save(userCurrency);
     }
 
     public Long getScoreByUsername(String username){
         QuizUser quizUser=quizUserService.getQuizUserByUsername(username);
-        //TODO:check
-        Object userCurrency=userCurrencyRepository.getByQuizUser(quizUser);
-        return ((UserCurrency) userCurrency).getScore();
+        UserCurrency userCurrency=userCurrencyRepository.getByQuizUser(quizUser);
+        return userCurrency.getScore();
     }
 
     public void initUserCurrency(QuizUser quizUser){
