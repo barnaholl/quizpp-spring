@@ -10,5 +10,5 @@ public interface SoloGameSessionRepository extends JpaRepository<SoloGameSession
 
     Boolean existsByGameIdAndUsername(Long gameId, String username);
 
-    Optional<SoloGameSession> findByGameIdAndUsername(Long gameId, String username);
+    SoloGameSession findByGameIdAndUsername(Long gameId, String username);
 }
