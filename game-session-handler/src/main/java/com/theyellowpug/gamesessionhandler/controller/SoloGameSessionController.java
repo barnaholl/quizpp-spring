@@ -47,4 +47,9 @@ public class SoloGameSessionController {
         return soloGameSessionService.isSoloGameSessionExist(id,username);
     }
 
+    @GetMapping("/{gameId}/{username}")
+    public Optional<SoloGameSession> getSoloGameSessionByGameIdAndUsername(@PathVariable("gameId") Long gameId, @PathVariable("username") String username){
+        return soloGameSessionService.getSoloGameSessionByGameIdAndUsername(gameId,username);
+    }
+
 }

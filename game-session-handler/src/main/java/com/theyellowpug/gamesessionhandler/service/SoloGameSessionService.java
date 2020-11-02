@@ -78,4 +78,7 @@ public class SoloGameSessionService {
         return soloGameSessionRepository.existsByGameIdAndUsername(gameId,username);
     }
 
+    public Optional<SoloGameSession> getSoloGameSessionByGameIdAndUsername(Long gameId, String username) {
+        return soloGameSessionRepository.findByGameIdAndUsername(gameId, username);
+    }
 }
