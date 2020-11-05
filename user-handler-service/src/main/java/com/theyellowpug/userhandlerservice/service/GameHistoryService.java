@@ -40,13 +40,11 @@ public class GameHistoryService {
     public List<Long> getGameSessionIdsByUsername(String username){
         QuizUser quizUser=quizUserRepository.findByUsername(username);
         GameHistory gameHistory=gameHistoryRepository.getByQuizUser(quizUser);
-        List<Long> gameSessionIds=gameHistory.getGameSessionIds();
-        return gameSessionIds;
+        return gameHistory.getGameSessionIds();
     }
 
     public Boolean isGameSessionExist(Long gameSessionId,String username){
-        Boolean isExist=restTemplate.getForObject(isGameSessionExistUrl+gameSessionId+"/"+username, Boolean.class);
-        return isExist;
+        return restTemplate.getForObject(isGameSessionExistUrl+gameSessionId+"/"+username, Boolean.class);
     }
 
     public SoloGameSessionModel getSoloGameSessionByGameIdAndUsername(Long gameId, String username) {
