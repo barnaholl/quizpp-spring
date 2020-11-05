@@ -2,7 +2,6 @@ package com.theyellowpug.userhandlerservice.service;
 
 import com.theyellowpug.userhandlerservice.entity.PersonalData;
 import com.theyellowpug.userhandlerservice.entity.QuizUser;
-import com.theyellowpug.userhandlerservice.entity.UserRole;
 import com.theyellowpug.userhandlerservice.repository.PersonalDataRepository;
 import com.theyellowpug.userhandlerservice.repository.QuizUserRepository;
 import org.springframework.boot.CommandLineRunner;

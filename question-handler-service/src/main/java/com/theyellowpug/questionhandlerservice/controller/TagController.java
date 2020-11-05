@@ -7,13 +7,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@CrossOrigin
 @RestController
 @RequestMapping("/tag")
 public class TagController {
 
-    @Autowired
-    private TagRepository tagRepository;
+
+    private final TagRepository tagRepository;
+
+    public TagController(TagRepository tagRepository) {
+        this.tagRepository = tagRepository;
+    }
 
     @PostMapping("")
     public String addTag(@RequestBody Tag tag){

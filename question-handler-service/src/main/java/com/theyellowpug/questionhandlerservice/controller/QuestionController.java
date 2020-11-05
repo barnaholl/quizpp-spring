@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-//@CrossOrigin
 @RestController
 @RequestMapping()
 public class QuestionController {
