@@ -3,7 +3,6 @@ package com.theyellowpug.gamehandlerservice.service;
 import com.theyellowpug.gamehandlerservice.entity.Game;
 import com.theyellowpug.gamehandlerservice.repository.GameRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 

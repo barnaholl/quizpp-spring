@@ -1,9 +1,7 @@
 package com.theyellowpug.gamehandlerservice.controller;
 
 import com.theyellowpug.gamehandlerservice.entity.Game;
-import com.theyellowpug.gamehandlerservice.repository.GameRepository;
 import com.theyellowpug.gamehandlerservice.service.GameService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,8 +10,11 @@ import java.util.List;
 @RequestMapping("")
 public class GameController {
 
-    @Autowired
-    private GameService gameService;
+    private final GameService gameService;
+
+    public GameController(GameService gameService) {
+        this.gameService = gameService;
+    }
 
     @GetMapping("/")
     public List<Game> getAllGames(){
