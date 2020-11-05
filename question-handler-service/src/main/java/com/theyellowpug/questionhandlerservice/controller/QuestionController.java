@@ -12,7 +12,6 @@ import java.util.Optional;
 @RequestMapping()
 public class QuestionController {
 
-
     private final QuestionService questionService;
 
     public QuestionController(QuestionService questionService) {

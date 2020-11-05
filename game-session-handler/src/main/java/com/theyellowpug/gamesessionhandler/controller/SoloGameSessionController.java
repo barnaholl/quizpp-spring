@@ -1,13 +1,9 @@
 package com.theyellowpug.gamesessionhandler.controller;
 
 import com.theyellowpug.gamesessionhandler.entity.SoloGameSession;
-import com.theyellowpug.gamesessionhandler.repository.SoloGameSessionRepository;
-import com.theyellowpug.gamesessionhandler.service.QuestionServiceCaller;
 import com.theyellowpug.gamesessionhandler.service.SoloGameSessionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
