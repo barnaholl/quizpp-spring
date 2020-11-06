@@ -51,9 +51,9 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        createQuizUser("player","player","ROLE_PLAYER");
-        createQuizUser("creator","creator","ROLE_CREATOR");
-        createQuizUser("admin","admin","ROLE_ADMIN");
+       // createQuizUser("player","player","ROLE_PLAYER");
+        //createQuizUser("creator","creator","ROLE_CREATOR");
+        //createQuizUser("admin","admin","ROLE_ADMIN");
 
         //createPersonalData("player@quizpp.com",new Date(19960909),"Hungary","Male",quizUserRepository.getByUsername("player"));
     }

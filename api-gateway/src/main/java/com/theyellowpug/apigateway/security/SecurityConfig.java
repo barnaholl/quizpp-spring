@@ -41,6 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers( "/question-handler/**").authenticated()
                 .antMatchers( "/user-handler/**").authenticated()
                 .antMatchers("/game-handler/**").permitAll() // allowed only when signed in
+                .antMatchers("/swagger-ui.html").permitAll()
                 //.antMatchers(HttpMethod.DELETE, "/vehicles/**").hasRole("ADMIN") // allowed if signed in with ADMIN role
                 .anyRequest().denyAll() // anything else is denied
                 .and()
