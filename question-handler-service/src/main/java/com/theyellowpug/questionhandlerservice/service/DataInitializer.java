@@ -33,10 +33,10 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        createQuestion("pick A","A","B","C","D", (short) 1,new ArrayList<>(Arrays.asList(new String[]{"test", "general"})));
-        createQuestion("pick B","B","A","C","D", (short) 1,new ArrayList<>(Arrays.asList(new String[]{"test", "general"})));
-        createQuestion("pick C","C","B","A","D", (short) 1,new ArrayList<>(Arrays.asList(new String[]{"test", "general"})));
-        createQuestion("pick D","D","B","A","C", (short) 1,new ArrayList<>(Arrays.asList(new String[]{"test", "general"})));
+        //createQuestion("pick A","A","B","C","D", (short) 1,new ArrayList<>(Arrays.asList(new String[]{"test", "general"})));
+        //createQuestion("pick B","B","A","C","D", (short) 1,new ArrayList<>(Arrays.asList(new String[]{"test", "general"})));
+        //createQuestion("pick C","C","B","A","D", (short) 1,new ArrayList<>(Arrays.asList(new String[]{"test", "general"})));
+        //createQuestion("pick D","D","B","A","C", (short) 1,new ArrayList<>(Arrays.asList(new String[]{"test", "general"})));
 
     }
 }
