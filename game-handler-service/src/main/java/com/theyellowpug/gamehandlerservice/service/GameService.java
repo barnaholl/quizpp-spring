@@ -4,6 +4,7 @@ import com.theyellowpug.gamehandlerservice.entity.Game;
 import com.theyellowpug.gamehandlerservice.repository.GameRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -24,6 +25,7 @@ public class GameService {
     }
 
     public String createGame(Game game){
+        game.setExpiryDate(LocalDateTime.now().plusHours(2));
         gameRepository.save(game);
         return game.getTitle()+" game is created";
     }

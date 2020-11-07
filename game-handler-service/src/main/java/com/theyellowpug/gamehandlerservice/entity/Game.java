@@ -3,6 +3,7 @@ package com.theyellowpug.gamehandlerservice.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -32,5 +33,7 @@ public class Game {
 
     @ElementCollection
     private List<String> playersEnrolled;
+
+    private LocalDateTime expiryDate;
 
 }
