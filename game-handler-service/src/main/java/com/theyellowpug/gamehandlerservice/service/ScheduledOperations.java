@@ -20,22 +20,22 @@ public class ScheduledOperations {
         this.gameRepository = gameRepository;
     }
 
-    @Scheduled(initialDelay = 60*1000L,fixedDelay = 30*1000L)
+    @Scheduled(initialDelay = 60*1000L,fixedDelay = 180*1000L)
     private void createGame(){
         Game game= Game.builder()
                 .title("Game number "+counter)
                 .difficulty((short) 1)
                 .tag("general")
                 .type("free")
-                .description("Auto generated game at: " +LocalDateTime.now())
-                .expiryDate(LocalDateTime.now().plusMinutes(1))
+                .description("Game will expire at: " +LocalDateTime.now().plusMinutes(2))
+                .expiryDate(LocalDateTime.now().plusMinutes(5))
                 .build();
 
         gameRepository.save(game);
         counter++;
 
     }
-    @Scheduled(fixedDelay = 120*1000L)
+    @Scheduled(fixedDelay = 300*1000L)
     private void cleanUp(){
         List<Game> expiredGames=gameRepository.findAllByExpiryDateLessThan(LocalDateTime.now());
         gameRepository.deleteAll(expiredGames);

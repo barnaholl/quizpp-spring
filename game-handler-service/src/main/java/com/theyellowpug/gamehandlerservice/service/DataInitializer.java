@@ -20,6 +20,6 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args){
-        //createGame("My first game ever","This is the first game of QuizPP","general","free",(short)1);
+        //createGame("My first game ever","This is a test game of QuizPP","test","free",(short)1);
     }
 }
